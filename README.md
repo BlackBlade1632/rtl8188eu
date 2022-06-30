@@ -1,58 +1,64 @@
 IMPORTANT - PLEASE READ:
 
-Beginning on November 4, 2019, I will NO LONGER support people that have downloaded the source
-as a zip file. Using git has much more flexibility. In addition, there is much less likelihood
-that a user will contact me with a problem that is ALREADY fixed.
+First of all, i had a lot of time struggling with this, installing repos from a lot of sources and finally managed to create one that works for me.
+I used the https://github.com/lwfinger/rtl8188eu repo with extra steps. I hope that works for you.
 
-If your system says that /lib/modules/...../build does not exist, you have not
-installed the kernel headers, you have done it incorrectly, or you are not running
-the kernel for which the headers have been installed. The necessary steps are
-dependent on which distro you are using. Creating a new issue and asking at
-GitHub will not be productive.
 
-Your kernel configuration MUST have CONFIG_WIRELESS_EXT set.
+=======================
+Necesary dependencies:
+=======================
 
-Unsolicited E-mail sent to my private address will be ignored!!
+sudo apt update
+sudo apt upgrade
 
-If a build fails that previously worked, perform a 'git pull' and retry before
-reporting a problem. As noted, if you had downloaded the source in zip form, then you would
-need to get an entirely new source file. That is why using git, which downloads only the changed
-lines, is required.
+sudo apt-get install bc build-essential libelf-dev linux-headers-generic git dkms
 
-rtl8188eu
-=========
+sudo reboot (I rebooted my system every few steps in order to make sure that everything works)
 
-Repository for the stand-alone RTL8188EU driver.
+=================================================
+Try either of these commands to see which works:
+=================================================
 
-Compiling & Building
----------
-### Dependencies
-To compile the driver, you need to have make and a compiler installed. In addition,
-you must have the kernel headers installed. If you do not understand what this means,
-consult your distro.
-### Compiling
+* Option 1: sudo apt-get install linux-headers-`uname -r`
+* Option 2: sudo apt-get install linux-headers-5.10.0-kali6-amd64
 
-> make all
+sudo reboot
 
-### Installing
+=======================
+Clone the repository
+=======================
 
-> sudo make install
+https://github.com/BlackBlade1632/rtl8188eu.git
 
-Submitting Issues
----------
+=============================================
+Go sudo and add to blacklist another driver:
+=============================================
 
-Frequently asked Questions
----------
+sudo -i
+echo "blacklist r8188eu" > "/etc/modprobe.d/realtek.conf"
+exitf"
 
-### The network manager says: "Device is not ready"!
-Make sure you copied the firmware (rtl8188eufw.bin) to /lib/firmware/rtlwifi/
+======================================
+Cd to the directory and make install:
+======================================
 
-### NetworkManager does not list SSID
-NetworkManager changes the Wi-Fi MAC address during scanning to improve privacy but this adapter does not support it. To address this issue, please create `/etc/NetworkManager/conf.d/80-wifi.conf` with content:
+cd rtl8188eu/
 
-```
-[device]
-wifi.scan-rand-mac-address=no
-```
+make all
 
-and run `systemctl restart NetworkManager`
+sudo make install
+
+====================================================
+This is only to make sure that the file was copied:
+====================================================
+
+sudo cp -v rtl8188eufw.bin /lib/firmware/rtlwifi/
+
+=======================
+Now the final steps:
+=======================
+sudo depmod -a
+
+sudo update-initramfs -u
+
+sudo modprobe 8188eu
