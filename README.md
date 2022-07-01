@@ -79,3 +79,4 @@ iwconfig (to check)
 
 * https://github.com/lwfinger/rtl8188eu 
 * https://linuxforums.org.uk/index.php?topic=11261.0
+* https://github.com/aircrack-ng/aircrack-ng
