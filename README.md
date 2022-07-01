@@ -28,7 +28,7 @@ sudo reboot
 
 | Clone the repository: |
 
-https://github.com/BlackBlade1632/rtl8188eu.git
+git clone https://github.com/BlackBlade1632/rtl8188eu.git
 
 
 | Go sudo and add to blacklist another driver: |
@@ -41,25 +41,20 @@ exitf"
 | Cd to the directory and make install: |
 
 cd rtl8188eu/
-
 make all
-
 sudo make install
 
 
 | This is only to make sure that the file was copied: |
 
 sudo cp -v rtl8188eufw.bin /lib/firmware/rtlwifi/
-
 sudo reboot
 
 
 | Now the final steps: |
 
 sudo depmod -a
-
 sudo update-initramfs -u
-
 sudo modprobe 8188eu
 
 | Sources: |
