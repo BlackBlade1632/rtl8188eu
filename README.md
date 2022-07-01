@@ -1,10 +1,10 @@
 
 
 
-|IMPORTANT - PLEASE READ: |
+| IMPORTANT - PLEASE READ: |
 
 First of all, i had a lot of time struggling with this, installing repos from a lot of sources and finally managed to create one that works for me.
-I used the https://github.com/lwfinger/rtl8188eu repo with extra steps. I hope that works for you.
+I used the David Bombal's and https://github.com/aircrack-ng/aircrack-ng repos, but didn't worked. I hope this works for you.
 
 
 
@@ -13,7 +13,7 @@ I used the https://github.com/lwfinger/rtl8188eu repo with extra steps. I hope t
 sudo apt update
 sudo apt upgrade
 
-sudo apt-get install bc build-essential libelf-dev linux-headers-generic git dkms
+sudo apt-get install bc build-essential libelf-dev linux-headers-generic git dkms autoconf libtool pkg-config libnl-3-dev libnl-genl-3-dev libssl-dev ethtool shtool rfkill zlib1g-dev libpcap-dev libsqlite3-dev libpcre3-dev libhwloc-dev libcmocka-dev hostapd wpasupplicant tcpdump screen iw usbutils
 
 sudo reboot (I rebooted my system every few steps in order to make sure that everything works)
 
@@ -61,3 +61,8 @@ sudo depmod -a
 sudo update-initramfs -u
 
 sudo modprobe 8188eu
+
+| Sources: |
+
+* https://github.com/lwfinger/rtl8188eu 
+* https://linuxforums.org.uk/index.php?topic=11261.0
