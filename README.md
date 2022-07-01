@@ -1,6 +1,8 @@
 
 +-------------------------+
+
 |IMPORTANT - PLEASE READ: |
+
 +-------------------------+
 
 First of all, i had a lot of time struggling with this, installing repos from a lot of sources and finally managed to create one that works for me.
