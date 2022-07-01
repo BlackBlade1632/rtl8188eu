@@ -57,6 +57,14 @@ sudo depmod -a
 sudo update-initramfs -u
 sudo modprobe 8188eu
 
+
+| Enable 'Monitor mode' |
+
+sudo ifconfig wlan1 down
+sudo iwconfig wlan1 monitor mode [channel number (optional)]
+sudo ifconfig wlan1 up
+iwconfig (to check)
+
 | Sources: |
 
 * https://github.com/lwfinger/rtl8188eu 
